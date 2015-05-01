@@ -1,0 +1,20 @@
+head
+	title My homework
+	link(rel='stylesheet', href='/stylesheets/style.css')
+body
+	+main
+	
+template(name="main")
+	if isLogin
+		if isTeacher
+			if currentHomework
+				+grade
+			else
+				+teacher
+		else
+			+student
+	else
+		if loginPage
+			+login
+		if registerPage
+			+register

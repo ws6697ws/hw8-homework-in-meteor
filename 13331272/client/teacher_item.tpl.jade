@@ -1,0 +1,41 @@
+tr
+    td #{title}
+    td #{deadline}
+    td 
+        button.btn-lg.btn.btn-info(data-toggle='modal' data-target='##{_id}') detail
+        div.modal.fade(id='#{_id}' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+            div.modal-dialog
+                div.modal-content
+                    div.modal-header
+                        h3.text-center.text-primary #{title}
+                    div.modal-body.publish.center-block.bg-info
+                        h4 content
+                        p  #{content}
+                    div.modal-footer
+                        button.btn.btn-warning.btn-margin.btn-lg(data-dismiss='modal') confirm
+    td 
+        if isoverdue deadline
+            button.btn-lg.btn.btn-warning.grade(issue-id='#{_id}') grade
+            button.btn-lg.btn.btn-success(disable title='cant edit') edit
+        else
+            button.btn-lg.btn.btn-warning.grade(disable title='cant grade') grade
+            button.btn-lg.btn.btn-success(data-toggle='modal' data-target='#edit#{_id}') edit
+            div.modal.fade(id='edit#{_id}' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+                    div.modal-dialog
+                        div.modal-content
+                            div.modal-header
+                                h3.text-center.text-primary publish new homework
+                            form.edit-form(method='POST' )
+                                div.modal-body.publish.center-block
+                                    div.form-group
+                                        h4.text-left title
+                                        input(style='display:none' type='text', name='id', value='#{_id}')
+                                        input.form-control(type='text' placeholder='#{title}' readonly)
+                                    div.form-group
+                                        h4.text-left deadline
+                                        input.form-control( name='newdeadline' placeholder='deadline' type='text' size='10')
+                                    div.form-group
+                                        h4.text-left content
+                                        textarea.form-control(name='newcontent' rows='10' placeholder='write dowm your content' required autofocus)
+                                div.modal-footer
+                                    button.btn.btn-info.btn-margin.btn-lg(type='submit') change

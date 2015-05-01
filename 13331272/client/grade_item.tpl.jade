@@ -1,0 +1,33 @@
+tr
+	td #{username}
+	td #{latesttime}
+	td #{score}
+	td 
+		button.btn-lg.btn.btn-warning(data-toggle='modal' data-target='#detail#{username}') detail
+		div.modal.fade(id='detail#{username}' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+			div.modal-dialog
+				div.modal-content
+					div.modal-header
+						h3.text-center.text-primary #{username} 's homework detail
+					div.modal-body.publish.center-block
+							div.form-group
+								h4.text-left content
+								textarea.form-control(name='content' rows='10' placeholder='#{submission.content}' readonly)
+					div.modal-footer
+							button.btn.btn-warning.btn-margin.btn-lg(data-dismiss='modal') close
+	td 
+		button.btn-lg.btn.btn-success(data-toggle='modal' data-target='#grade#{username}') grade
+		div.modal.fade(id='grade#{username}' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+			div.modal-dialog
+				div.modal-content
+					div.modal-header
+						h3.text-center.text-primary grade #{username} 's homework
+					form.score-form(method='POST')
+						div.modal-body.publish.center-block
+							div.form-group
+								h4.text-left grade
+								input.form-control(name='grade' type='text'  required autofocus)
+								input(name='username' value='#{username}' style="display:none")
+						div.modal-footer
+							button.btn.btn-info.btn-margin.btn-lg(type='submit') grade
+							button.btn.btn-warning.btn-margin.btn-lg(data-dismiss='modal') close

@@ -1,0 +1,62 @@
+tr
+    td #{issue.user.firstName} #{issue.user.lastName}
+    td #{issue.title}
+    td #{issue.deadline}
+    td
+        button.btn-lg.btn.btn-success(data-toggle='modal' data-target='#submission#{issue._id}') #{submission.latesttime}
+        div.modal.fade(id='submission#{issue._id}' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+            div.modal-dialog
+                div.modal-content
+                    div.modal-header
+                        h3.text-center.text-primary latest submission：#{issue.title}
+                
+                    div.modal-body.publish.center-block
+                        div.form-group
+                            h4.text-left deadline
+                            input.form-control(readonly type='text' placeholder='#{issue.deadline}')
+                    
+                        div.form-group
+                            h4.text-left content
+                            textarea.form-control(name='content' rows='10' readonly placeholder='#{submission.content}') 
+                    div.modal-footer
+                        button.btn.btn-warning.btn-margin.btn-lg(data-dismiss='modal') confirm
+                        //-button.btn-lg.btn.btn-default(disable) none
+            
+    td #{submission.score}
+    td 
+        button.btn-lg.btn.btn-info(data-toggle='modal' data-target='##{issue._id}') detail
+        div.modal.fade(id='#{issue._id}' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+            div.modal-dialog
+                div.modal-content
+                    div.modal-header
+                        h3.text-center.text-primary #{issue.title}
+                    div.modal-body.publish.center-block.bg-info
+                        h4 content
+                        p  #{issue.content}
+                    div.modal-footer
+                        button.btn.btn-warning.btn-margin.btn-lg(data-dismiss='modal') confirm
+                        
+    td 
+        if isoverdue issue.deadline
+            button.btn-lg.btn.btn-default(disable) overdue
+        else        
+            button.btn-lg.btn.btn-success(data-toggle='modal' data-target='#a#{issue._id}' ) submit
+            div.modal.fade(id='a#{issue._id}' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+                div.modal-dialog
+                    div.modal-content
+                        div.modal-header
+                            h3.text-center.text-primary submit homework
+                        form.a-form( method='POST'  enctype='multipart/form-data')
+                            div.modal-body.publish.center-block
+                                div.form-group
+                                    h4.text-left title
+                                    input.form-control(name='title' value='#{issue.title}' readonly type='text' placeholder='#{issue.title}')
+                                div.form-group
+                                    h4.text-left deadline
+                                    input.form-control(readonly type='text' placeholder='#{issue.deadline}')
+                                div.form-group
+                                    h4.text-left content
+                                    textarea.form-control( name='content' rows='10' placeholder='submit your content' required autofocus)
+                            div.modal-footer
+                                button.btn.btn-info.btn-margin.btn-lg.btn-submit(type='submit' issue-id='#{issue._id}') submit
+                                button.btn.btn-danger.btn-margin.btn-lg(data-dismiss='modal') close

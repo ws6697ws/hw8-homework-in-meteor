@@ -1,0 +1,23 @@
+div.container
+    div.row
+        div.col-sm-10.col-md-10.col-md-offset-1.col-xs-10
+            h1.text-right.text-primary welcome back! 
+                div.start-wall
+                    h3.text-right
+                        span.label.label-primary student
+                    h3.text-primary.text-right #{user.firstName} #{user.lastName}, how can i help you?
+                    br
+                    h4.text-left.black the information below is your homework information, you can submit your homework
+                    br
+                    table.table.table-hover.homework
+                        tr
+                            th teacher
+                            th title
+                            th deadline
+                            th latest submission
+                            th score
+                            th content
+                            th operation
+                        each homeworks
+                            +student_item
+            a.text-center.sign-out(href="#") sign out

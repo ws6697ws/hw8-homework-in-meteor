@@ -1,0 +1,21 @@
+div.container.grade-block
+		div.row
+			div.col-sm-10.col-md-10.col-md-offset-1.col-xs-10
+				h1.text-center.text-primary please grade the homework
+					div.start-wall
+						h3.text-right
+							span.label.label-primary #{title}
+						h3.text-primary.text-right how can i help you?
+						br
+						
+
+						h4.text-left.black the homework i need to grade
+						table.table.table-hover.homework
+							tr
+								th name
+								th submit time
+								th score
+								th content
+								th grade
+							each specialworks
+								+grade_item

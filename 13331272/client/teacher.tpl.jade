@@ -1,0 +1,41 @@
+div.container.teacher-block
+    div.row
+        div.col-sm-10.col-md-10.col-md-offset-1.col-xs-10
+            h1.text-center.text-primary welcome back! 
+                div.start-wall
+                    h3.text-right
+                        span.label.label-primary teacher
+                    h3.text-primary.text-right #{user.firstName} #{user.lastName},how can i help you?
+                    br
+                    button.btn-lg.btn.btn-success(data-toggle='modal' data-target='#publish') publish new homework
+                    div#publish.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+                            div.modal-dialog
+                                div.modal-content
+                                    div.modal-header
+                                        h3.text-center.text-primary publish new homework
+                                    form.t-form(method='POST')
+                                        div.modal-body.publish.center-block
+                                            div.form-group
+                                                h4.text-left title
+                                                input.form-control(type='text' placeholder='title' name='title')
+                                            div.form-group
+                                                h4.text-left deadline
+                                                input.form-control(todayBtn="true" placeholder='click' type='text' name='deadline' todayHighlight='true' id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" class='form-control' size='10')
+                                            div.form-group
+                                                h4.text-left content
+                                                textarea.form-control(name='content' rows='10' placeholder='write dowm your content' required autofocus)
+                                        div.modal-footer
+                                            button.btn.btn-info.btn-margin.btn-lg(type='submit' action='#') publish
+                                            button.btn.btn-warning.btn-margin.btn-lg(data-dismiss='modal') close
+
+                    h4.text-left.black the homework i published
+                    table.table.table-hover.homework
+                        tr
+                            th title
+                            th deadline
+                            th content
+                            th operation
+                        each issues
+                            +teacher_item
+                        
+            a.text-center.sign-out(href="#") sign out
